@@ -3,10 +3,12 @@
 	function compressString(strayng){
 		//1.  convert the string into an array using toCharArray
 		let arrayChars = strayng.split("");
+		let newArray = checkForSameElement(arrayChars);
 		//2.  count the number of items in the array (get the index) using .length
 		//let arrayCharsLength = arrayChars.length();
 		//3.  evaluate the number of similar elements in the array using every() 
 		let numberOfElementRepeats = checkForSameElement(arrayChars);
+		console.log(numberOfElementRepeats);
 		//arrayChars.(checkForSameElement); // i'm going to have to define checkForSameElement before I can call it here **(see below for checkForSameElement)
 		//4.  check if elementsare the same
 		//		if elements of the array are the same then count the number of similar elements
@@ -20,7 +22,8 @@
 	}
 	
 	function checkForSameElement(arrayChars){
-		let newArray = [];
+		let stagingArray = [];
+		let count = 1;
 	//this function will check arrayChars array for similar elements and return a boolean
 	//first, check the first character, then compare it to the next character, if this is true then keep doing that until it's not
 	//IF and WHEN the condition is false break into the else loop and say -- hey, computer, i want you to now check the character AFTER the one 
@@ -31,21 +34,20 @@
 		//let alpha = 0; // alpha is the location within the array where I will begin my check
 		//let loopCount = 1; //this is the number with which I am going to start counting my elements
 		for (let i=0; i < arrayChars.length; i++) {
-			let count = 0;
 			if (arrayChars[i] === arrayChars[i+1]) {
-				count+1;
+				count++;
 			}
 			else {
-				newArray.push(arrayChars[i-1] + count);
-				console.log(newArray);
-				count=0;
+				stagingArray.push(count + arrayChars[i]);
+				console.log(stagingArray);
+				count=1;
 			// write to the console loopCount + arrayChars[].toString("") = numberOfElementRepeats
 				//return loopCount.toString() + arrayChars[alpha].toString();
 			}
 			}	
 		}
 	
-	compressString("aaaabbbccdd");
+	compressString("aaaabbbccdde");
 	
 	/*Jacob's String Compression Code
 	function compressString4(str){
